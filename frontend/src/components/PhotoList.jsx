@@ -1,11 +1,23 @@
 import React from 'react';
-
+import PhotoListItem from './PhotoListItem';
 import '../styles/PhotoList.scss';
 
-const PhotoList = () => {
+const PhotoList = (props) => {
+  const photos = new Array(3).fill(null);
+  
+  return (
   <ul className="photo-list">
-    {/* Insert React */}
-  </ul>
+    {photos.map((_, index) => (
+    <PhotoListItem
+      key={index + 1}
+      username=""
+      imageSource={`${process.env.PUBLIC_URL}/Image.jpg`}
+      id={index + 1}
+      hideUserName={false}
+    />
+  ))}
+</ul>
+ ) 
 }
 
 PhotoList.defaultProps = {

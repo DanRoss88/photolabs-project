@@ -1,23 +1,22 @@
 import React from "react";
-import "./styles/PhotoList.scss"
-import PhotoListItem from "./components/PhotoListItem";
+import "./styles/PhotoList.scss";
+import "./styles/TopicList.scss"
+import PhotoList from "./components/PhotoList";
 import "./App.scss";
+import TopicList from "./components/TopicList";
 
 const App = () => {
-  const photos = new Array(3).fill(null);
+  
 
   return (
     <div className="App">
+      <div className="topic-list">
+      <TopicList />
+      </div>
       <div className="photo-list">
-        {photos.map((_, index) => (
-          <PhotoListItem
-            key={index + 1}
-            username=""
-            imageSource={`${process.env.PUBLIC_URL}/Image.jpg`}
-            id={index + 1}
-            hideUserName={false}
-          />
-        ))}
+        <PhotoList />
+        <PhotoList />
+        <PhotoList />
       </div>
     </div>
   );
