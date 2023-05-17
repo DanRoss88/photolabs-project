@@ -1,23 +1,13 @@
 import React from "react";
-import "./styles/PhotoList.scss";
-import "./styles/TopicList.scss"
-import PhotoList from "./components/PhotoList";
 import "./App.scss";
-import TopicList from "./components/TopicList";
+import "./styles/HomeRoute.scss"
+import HomeRoute from "./components/HomeRoute";
+
 
 const App = () => {
-  
-
   return (
     <div className="App">
-      <div className="topic-list">
-      <TopicList />
-      </div>
-      <div className="photo-list">
-        <PhotoList />
-        <PhotoList />
-        <PhotoList />
-      </div>
+      <HomeRoute />
     </div>
   );
 };
