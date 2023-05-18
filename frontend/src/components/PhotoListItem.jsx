@@ -1,21 +1,19 @@
 import React from "react";
-import "../styles/PhotoListItem.scss";
-import "../styles/PhotoFavButton.scss";
 import PhotoFavButton from "./PhotoFavButton";
-import photos from "../mocks/photos.json";
+import "../styles/PhotoListItem.scss";
 
-const PhotoListItem = (props) => {
-  const { id, username, hideUserName } = props;
-  const photo = photos.find((photo) => photo.id === id);
+const PhotoListItem = ({ photo, isFavourite, addToFavourites, removeFromFavourites }) => {
+  const { id, username, urls } = photo;
 
-  if (!photo) {
-    return null;
-  }
-  const { urls } = photo;
   return (
     <article className="photo-list--item">
-      {hideUserName ? null : username}
-      <PhotoFavButton />
+      <span>{username}</span>
+      <PhotoFavButton
+        photoId={id}
+        isFavourite={isFavourite}
+        addToFavourites={addToFavourites}
+        removeFromFavourites={removeFromFavourites}
+      />
       <img
         alt={`Photo ${id}`}
         className="photo-list--image"

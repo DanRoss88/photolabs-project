@@ -1,19 +1,28 @@
-import React, { useCallback, useState } from "react";
+import React from "react";
 import FavBadge from "./FavBadge";
 import { FavIcon } from "./FavIcon";
 import "../styles/PhotoFavButton.scss";
 
-const PhotoFavButton = () => {
-  const [isFavourited, setFavourited] = useState(false);
-
+const PhotoFavButton = ({
+  photoId,
+  isFavourite,
+  addToFavourites,
+  removeFromFavourites,
+  updateFavoriteCount,
+}) => {
   const handleFavIconClick = () => {
-    console.log("click");
-    setFavourited(!isFavourited);
+    if (isFavourite) {
+      removeFromFavourites(photoId);
+      updateFavoriteCount(-1);
+    } else {
+      addToFavourites(photoId);
+      updateFavoriteCount(1);
+    }
   };
 
   return (
     <div className="photo-list--fav-icon" onClick={handleFavIconClick}>
-      {isFavourited ? (
+      {isFavourite ? (
         <FavBadge className="photo-list--fav-icon-svg" />
       ) : (
         <FavIcon className="photo-list--fav-icon-svg" />

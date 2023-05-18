@@ -1,19 +1,17 @@
 import React from "react";
 import PhotoListItem from "./PhotoListItem";
 import "../styles/PhotoList.scss";
-import photos from "../mocks/photos.json";
 
-const PhotoList = (props) => {
-  const displayPhotos = new Array(3).fill(null);
-
+const PhotoList = ({ photos, isFavourite, addToFavourites, removeFromFavourites }) => {
   return (
     <ul className="photo-list">
-      {displayPhotos.map((_, index) => (
+      {photos.map((photo) => (
         <PhotoListItem
-          key={index + 1}
-          username={photos[index]?.user.username || ""}
-          id={photos[index]?.id || ""}
-          hideUserName={false}
+          key={photo.id}
+          photo={photo}
+          isFavourite={isFavourite(photo.id)}
+          addToFavourites={addToFavourites}
+          removeFromFavourites={removeFromFavourites}
         />
       ))}
     </ul>
