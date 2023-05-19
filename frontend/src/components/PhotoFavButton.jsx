@@ -4,19 +4,16 @@ import { FavIcon } from "./FavIcon";
 import "../styles/PhotoFavButton.scss";
 
 const PhotoFavButton = ({
-  photoId,
   isFavourite,
   addToFavourites,
   removeFromFavourites,
-  updateFavoriteCount,
+  photo,
 }) => {
   const handleFavIconClick = () => {
     if (isFavourite) {
-      removeFromFavourites(photoId);
-      updateFavoriteCount(-1);
+      removeFromFavourites(photo);
     } else {
-      addToFavourites(photoId);
-      updateFavoriteCount(1);
+      addToFavourites(photo);
     }
   };
 

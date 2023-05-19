@@ -1,7 +1,6 @@
 import React from "react";
 import "../styles/TopNavigationBar.scss";
 import TopicList from "./TopicList";
-import FavBadge from "./FavBadge";
 import FavIcon from "./FavIcon";
 
 const TopNavigation = ({ favouriteCount }) => {
@@ -14,10 +13,7 @@ const TopNavigation = ({ favouriteCount }) => {
         <TopicList />
       </div>
       <div className="top-nav-bar--badge">
-       {
-        <FavIcon fill={fill}
-          displayAlert={displayAlert}
-        />} 
+        {<FavIcon fill={fill} displayAlert={displayAlert} />}
       </div>
     </div>
   );

@@ -2,7 +2,7 @@ import React from "react";
 import "../styles/TopicListItem.scss";
 import "../styles/TopicList.scss";
 import TopicListItem from "./TopicListItem";
-import topics from "../mocks/topics.json";
+import topics from "../mocks/topics.json"
 
 const TopicList = (props) => {
   return (
