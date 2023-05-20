@@ -12,7 +12,6 @@ const PhotoDetailsModal = ({
   removeFromFavourites,
   favouritePhotos,
 }) => {
-  console.log(selectedPhoto);
   const handleModalClose = () => {
     closeModal();
   };

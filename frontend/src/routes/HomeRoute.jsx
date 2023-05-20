@@ -3,7 +3,6 @@ import TopNavigation from "../components/TopNavigationBar";
 import PhotoList from "../components/PhotoList";
 import "../styles/HomeRoute.scss";
 
-
 const HomeRoute = ({
   photos,
   topics,
@@ -12,10 +11,10 @@ const HomeRoute = ({
   addToFavourites,
   removeFromFavourites,
   favouritePhotos,
-  handleTopicClick
+  handleTopicClick,
 }) => {
   const favouriteCount = favouritePhotos.length;
- 
+
   return (
     <div className="home-route">
       <div className="nav-bar">
@@ -23,13 +22,13 @@ const HomeRoute = ({
           topics={topics}
           favouriteCount={favouriteCount}
           isFavPhotoExist={favouriteCount > 0}
-          favouritePhotos={favouritePhotos} 
+          favouritePhotos={favouritePhotos}
           photos={photos}
           handleTopicClick={handleTopicClick}
         />
-     </div>
-    
-     <div className="photo-list">
+      </div>
+
+      <div className="photo-list">
         {photos ? (
           <PhotoList
             openModal={openModal}

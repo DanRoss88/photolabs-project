@@ -66,7 +66,6 @@ export default function useApplicationData({ photos, topics }) {
   };
 
   const openModal = async (photo) => {
-    console.log(photo);
     dispatch({ type: OPEN_MODAL, payload: photo });
   };
 

@@ -36,11 +36,9 @@ const PhotoListItem = ({
           className="photo-list--image"
           onClick={handleOpenModal}
         />
-      <div >
-      
-        <UserProfile photo={photo} id={id} user={user} location={location} />
-      
-      </div>
+        <div>
+          <UserProfile photo={photo} id={id} user={user} location={location} />
+        </div>
       </article>
     </div>
   );

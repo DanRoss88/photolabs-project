@@ -9,8 +9,11 @@ import PhotoDetailsModal from "./routes/PhotoDetailsModal";
 const App = () => {
   const [photos, setPhotos] = useState([]);
   const [topics, setTopics] = useState([]);
-  const { similarPhotos: applicationSimilarPhotos } = useApplicationData({ photos, topics });
- 
+  const { similarPhotos: applicationSimilarPhotos } = useApplicationData({
+    photos,
+    topics,
+  });
+
   const handleTopicClick = (topicId) => {
     if (topicId) {
       fetch(`http://localhost:8001/api/photos/${topicId}`)
@@ -52,7 +55,7 @@ const App = () => {
     isFavourite,
     addToFavourites,
     removeFromFavourites,
-    similarPhotos
+    similarPhotos,
   } = useApplicationData({ photos, topics });
 
   return (
