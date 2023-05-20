@@ -1,6 +1,6 @@
 import React from "react";
 import FavIcon from "./FavIcon";
-import HomeRoute from "./HomeRoute";
+import HomeRoute from "../routes/HomeRoute";
 import "../styles/FavBadge.scss";
 
 export const FavBadge = ({ isFavPhotoExist }) => {

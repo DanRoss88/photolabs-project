@@ -1,3 +1,4 @@
+
 import React from "react";
 import PhotoListItem from "./PhotoListItem";
 import "../styles/PhotoList.scss";
@@ -9,13 +10,17 @@ function PhotoList({
   addToFavourites,
   removeFromFavourites,
 }) {
-  if (!photos) {
-    return <p>Loading...</p>;
+  if (!photos || !Array.isArray(photos) || photos.length === 0) {
+    return <p>No photos available.</p>;
   }
+
+  const validPhotos = photos.filter(
+    (photo) => photo && typeof photo === "object" && photo.id
+  );
 
   return (
     <ul className="photo-list">
-      {photos.map((photo) => (
+      {validPhotos.map((photo) => (
         <PhotoListItem
           key={photo.id}
           photo={photo}
@@ -23,7 +28,6 @@ function PhotoList({
           addToFavourites={addToFavourites}
           removeFromFavourites={removeFromFavourites}
           openModal={openModal}
-          user={photo.user}
         />
       ))}
     </ul>

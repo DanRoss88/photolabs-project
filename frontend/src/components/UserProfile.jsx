@@ -2,15 +2,17 @@ import React from "react";
 import "../styles/PhotoListItem.scss";
 
 const UserProfile = ({ photo }) => {
-  const { username, portfolio_url } = photo.user;
-  const { city, country } = photo.location || {};
+  const { user } = photo;
+  const { username } = user;
+  const { city, country } = photo.location;
+  const { profile } = user;
 
   return (
     <div className="photo-list--user-details">
       <img
         className="photo-list--user-profile"
-        src={`profile-1.jpg`}
-        alt={`profile `}
+        src={profile}
+        alt={`Profile of ${username}`}
       />
 
       <div className="photo-list--user-info">

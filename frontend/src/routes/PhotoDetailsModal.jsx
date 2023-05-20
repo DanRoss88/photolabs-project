@@ -1,17 +1,18 @@
 import React from "react";
 import "../styles/PhotoDetailsModal.scss";
-import PhotoListItem from "../components/PhotoListItem";
 import PhotoList from "../components/PhotoList";
-
+import UserProfile from "../components/UserProfile";
+import PhotoFavButton from "../components/PhotoFavButton";
 const PhotoDetailsModal = ({
+  photos,
   selectedPhoto,
-  similarPhotos,
   closeModal,
   isFavourite,
   addToFavourites,
   removeFromFavourites,
   favouritePhotos,
 }) => {
+  console.log(selectedPhoto);
   const handleModalClose = () => {
     closeModal();
   };
@@ -61,22 +62,33 @@ const PhotoDetailsModal = ({
         </svg>
       </button>
 
-      <div className="photo-details-modal--image top-modal-photo ">
+      <div className="photo-details-modal--images ">
         {selectedPhoto && (
-          <PhotoListItem
-            key={selectedPhoto.id}
-            photo={selectedPhoto}
-            isFavourite={isPhotoFavourite}
-            addToFavourites={addToFavourites}
-            removeFromFavourites={removeFromFavourites}
-            favouritePhotos={favouritePhotos}
-          />
+          <>
+            <PhotoFavButton
+              photoId={selectedPhoto.id}
+              isFavourite={isPhotoFavourite}
+              addToFavourites={addToFavourites}
+              removeFromFavourites={removeFromFavourites}
+              photo={selectedPhoto}
+            />
+            <img
+              alt={`Photo ${selectedPhoto.id}`}
+              src={selectedPhoto.urls.regular}
+              key={selectedPhoto.id}
+              id={selectedPhoto.id}
+              className="photo-details-modal--image"
+            />
+            <div>
+              <UserProfile
+                photo={selectedPhoto}
+                id={selectedPhoto.id}
+                user={selectedPhoto.user}
+                location={selectedPhoto.location}
+              />
+            </div>
+          </>
         )}
-      </div>
-
-      <div className="photo-details">
-        <h2>{selectedPhoto.title}</h2>
-        <p>{selectedPhoto.description}</p>
       </div>
 
       <div className="photo-details-modal--header">
@@ -86,7 +98,7 @@ const PhotoDetailsModal = ({
       <div className="photo-details-modal--images">
         <div className="photo-list">
           <PhotoList
-            photos={similarPhotos}
+            photos={selectedPhoto.similar_photos}
             isFavourite={isFavourite}
             addToFavourites={addToFavourites}
             removeFromFavourites={removeFromFavourites}

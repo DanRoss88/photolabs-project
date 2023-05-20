@@ -1,28 +1,64 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./App.scss";
 import "./styles/HomeRoute.scss";
-import HomeRoute from "./components/HomeRoute";
+import HomeRoute from "./routes/HomeRoute";
 import useApplicationData from "./hooks/useApplicationData";
-import topics from "./mocks/topics.json";
+
 import PhotoDetailsModal from "./routes/PhotoDetailsModal";
-import photos from "./mocks/photos.json"
 
 const App = () => {
-const {
-  isModalOpen,
-  selectedPhoto,
-  similarPhotos,
-  favouritePhotos,
-  openModal,
-  closeModal,
-  isFavourite,
-  addToFavourites,
-  removeFromFavourites,
-} = useApplicationData();
+  const [photos, setPhotos] = useState([]);
+  const [topics, setTopics] = useState([]);
+  const { similarPhotos: applicationSimilarPhotos } = useApplicationData({ photos, topics });
+ 
+  const handleTopicClick = (topicId) => {
+    if (topicId) {
+      fetch(`http://localhost:8001/api/photos/${topicId}`)
+        .then((response) => response.json())
+        .then((data) => {
+          setPhotos(data);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
+  };
+
+  useEffect(() => {
+    fetch("http://localhost:8001/api/photos")
+      .then((response) => response.json())
+      .then((data) => {
+        setPhotos(data);
+      })
+      .catch((error) => console.error("Error fetching photos:", error));
+  }, []);
+  useEffect(() => {
+    fetch("/api/topics")
+      .then((response) => response.json())
+      .then((data) => setTopics(data))
+      .catch((error) => console.error("Error fetching topics:", error));
+  }, []);
+
+  useEffect(() => {
+    handleTopicClick();
+  }, []);
+
+  const {
+    isModalOpen,
+    selectedPhoto,
+    favouritePhotos,
+    openModal,
+    closeModal,
+    isFavourite,
+    addToFavourites,
+    removeFromFavourites,
+    similarPhotos
+  } = useApplicationData({ photos, topics });
 
   return (
     <div className="App">
       <HomeRoute
+        handleTopicClick={handleTopicClick}
         photos={photos}
         topics={topics}
         openModal={openModal}
@@ -34,8 +70,8 @@ const {
       />
       {isModalOpen && (
         <PhotoDetailsModal
+          photos={photos}
           selectedPhoto={selectedPhoto}
-          similarPhotos={similarPhotos}
           closeModal={closeModal}
           isFavourite={isFavourite}
           addToFavourites={addToFavourites}

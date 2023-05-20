@@ -10,7 +10,7 @@ const PhotoListItem = ({
   addToFavourites,
   removeFromFavourites,
 }) => {
-  const { id, user, urls } = photo;
+  const { id, user, urls, location } = photo;
 
   const handleOpenModal = () => {
     const parentModal = document.querySelector(".photo-details-modal");
