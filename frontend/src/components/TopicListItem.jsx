@@ -4,7 +4,8 @@ import "../styles/TopicListItem.scss";
 const TopicListItem = (props) => {
   const { id, label, link, handleTopicClick } = props;
 
-  const handleTopClick = () => {
+  const handleTopClick = (event) => {
+    event.preventDefault();
     handleTopicClick(id);
   };
 

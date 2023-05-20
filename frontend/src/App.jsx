@@ -16,7 +16,7 @@ const App = () => {
 
   const handleTopicClick = (topicId) => {
     if (topicId) {
-      fetch(`http://localhost:8001/api/photos/${topicId}`)
+      fetch(`http://localhost:8001/api/topics/photos/${topicId}`)
         .then((response) => response.json())
         .then((data) => {
           setPhotos(data);
